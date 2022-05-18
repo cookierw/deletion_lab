@@ -55,7 +55,66 @@ public class CustomLinkedList<T> {
      * @param o
      */
     public boolean remove(Object o){
-        // TODO: Complete me
+        Node<T> current = first;
+
+        if(o == null){
+            for(int i = 0; i < size; i++){
+                if(current.item == o){
+                    if(current.equals(first)){
+                        first = first.next;
+                        size--;
+                        return true;
+                    }
+                    if(current.equals(last)){
+                        Node<T> nodeToRemove = current;
+                        current = first;
+                        while(current.next != nodeToRemove) current = current.next;
+                        current.next = null;
+                        last = current;
+                        size--;
+                        return true;
+                    }
+                    Node<T> nodeToRemove = current;
+                    current = first;
+                    while(current.next != nodeToRemove) current = current.next;
+                    current.next = current.next.next;
+                    size--;
+                    return true;
+
+                }
+                current = current.next;
+            }
+        } else {
+            for(int i = 0; i < size; i++){
+                if(current.item.equals(o)){
+                    if(current.equals(first)){
+                        first = first.next;
+                        size--;
+                        return true;
+                    }
+
+                    if(current.equals(last)){
+                        Node<T> nodeToRemove = current;
+                        current = first;
+                        while(current.next != nodeToRemove) current = current.next;
+                        current.next = null;
+                        last = current;
+                        size--;
+                        return true;
+                    }
+
+                    Node<T> nodeToRemove = current;
+                    current = first;
+                    while(current.next != nodeToRemove) current = current.next;
+                    current.next = current.next.next;
+                    size--;
+                    return true;
+                }
+                current = current.next;
+            }
+        }
+
+        return false;
     }
 
 
