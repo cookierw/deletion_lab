@@ -55,7 +55,26 @@ public class CustomLinkedList<T> {
      * @param o
      */
     public boolean remove(Object o){
-        // TODO: Complete me
+        Node<T> current = first;
+        Node<T> previous = null;
+        
+        for (int i = 0; i < size; i++) {
+            // Found item - remove & return true
+            if (current.item.equals(o)) {
+                if (previous == null) {
+                    first = current.next;
+                } else {
+                    previous.next = current.next;
+                }
+                size--;
+                return true;
+            }
+            previous = current;
+            current = current.next;
+        }
+
+        // No item found - return false
+        return false;
     }
 
 
